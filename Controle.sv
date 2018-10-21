@@ -40,8 +40,8 @@ INC_2:begin
 		muxALU = 0;
 		muxPC = 0;
 		muxZero = 0;
-		muxRegEscr = 0; //Esse Mux será usado
-		muxDadEscr = 0; //Esse Mux será usado
+		muxRegEscr = 0; 
+		muxDadEscr = 0; 
 		muxMemData = 0;
 		muxN = 0;
 		muxRs = 0;
@@ -85,8 +85,8 @@ INC_3:begin
 		muxALU = 0;
 		muxPC = 0;
 		muxZero = 0;
-		muxRegEscr = 0;
-		muxDadEscr = 0;
+		muxRegEscr = 0; //Esse Mux será usado para gravar no registrador
+		muxDadEscr = 0; //Esse Mux será usado para gravar o dado
 		muxMemData = 0;
 		muxN = 0;
 		muxRs = 0;
@@ -94,8 +94,8 @@ INC_3:begin
 		muxMflo = 0;
 		WR = 0;
 		loadRegALU = 1;
-		loadRegA = 1;
-		loadRegB = 1;
+		loadRegA = 0;
+		loadRegB = 0;
 		loadRegMemData = 0;
 		loadRegEPC = 0;
 		loadRegMfhi = 0;

@@ -1,5 +1,5 @@
 INC_1:begin
-    muxA = 3; //Mux A recebe 3, que é o valor do registrador estendido paga 32.
+    		muxA = 3; //Mux A recebe 3, que é o valor do registrador estendido paga 32.
 		muxB = 4; //Mux B recebe 4, que é 1.
 		muxALU = 0;
 		muxPC = 0;

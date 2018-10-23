@@ -1,0 +1,4 @@
+//Modulo simples o qual recebe como entrada 2 valores(PCWriteCond e Zero) e sua saida e o AND deles
+module ANND (input logic PCWriteCond, ZeRo, output logic and_out);
+		assign and_out = PCWriteCond & ZeRo;
+endmodule: ANND

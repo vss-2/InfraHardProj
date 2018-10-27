@@ -7,11 +7,16 @@ module Controle (input logic Clk, Reset, overflow, menor, maior, igual, multipli
 				output logic [1:0]muxB, muxMemData, muxZero, muxA,
 				output logic muxMfhi, muxMflo, muxRs, muxN, WR, loadRegALU, loadRegA, loadRegB, loadRegMemData, loadRegEPC, escreverIR, escrevePC, escrevePCcond, regBanco, loadRegMfhi, loadRegMflo, iniciarMult, iniciarDiv);
 		
-	enum logic [5:0] {INICIO/*0*/, PC_MEMORIA_SOMA4/*1*/, ESPERA_PC_MEM4_1/*2*/, DECOD/*3*/, BREAK/*4*/, ARIT_1/*5*/, ARIT_2/*6*/, ARIT_3/*7*/,
-					 BEQ_1/*8*/, BEQ_2/*9*/, BNE_1/*10*/, BNE_2/*11*/, BLE_1/*12*/, BLE_2/*13*/, BGT_1/*14*/, BGT_2/*15*/, LW_1 /*16*/, LW_2 /*17*/, ESPERA_LW/*18*/, LW_3 /*19*/, LW_4 /*20*/,SW_1/*21*/,
-					 SW_2/*22*/, SW_3/*23*/, LUI_1/*24*/, LUI_2/*25*/, JMP/*26*/, LB/*27*/, LH/*28*/, ESPERA_SH_SB/*29*/, SH/*30*/, SB/*31*/, JAL/*32*/,
-					 JR/*33*/, SHIFT_1/*34*/, SHIFT_2/*35*/, ARIT_IMM_1/*36*/, ARIT_IMM_2/*37*/, ARIT_IMM_3/*38*/, EXCES_1/*39*/, EXCES_2/*40*/, EXCES_3/*41*/,
-					 RTE/*42*/, SLT_1/*43*/, SLT_2/*44*/, MUL_1/*45*/, MUL_2/*46*/, DIV_1/*47*/,DIV_2/*48*/, MFHI/*49*/, MFLO/*50*/, RESET/*51*/, INC_1, INC_2, DEC_1, DEC_2}estado, prox_estado;
+	enum logic [5:0] {INICIO/*0*/, PC_MEMORIA_SOMA4/*1*/, ESPERA_PC_MEM4_1/*2*/, DECOD/*3*/, BREAK/*4*/, 
+			  		 ARIT_1/*5*/, ARIT_2/*6*/, ARIT_3/*7*/, BEQ_1/*8*/, BEQ_2/*9*/, BNE_1/*10*/, 
+			  		 BNE_2/*11*/, BLE_1/*12*/, BLE_2/*13*/, BGT_1/*14*/, BGT_2/*15*/, LW_1 /*16*/, 
+			  		 LW_2 /*17*/, ESPERA_LW/*18*/, LW_3 /*19*/, LW_4 /*20*/,SW_1/*21*/,
+					 SW_2/*22*/, SW_3/*23*/, LUI_1/*24*/, LUI_2/*25*/, JMP/*26*/, LB/*27*/, LH/*28*/, 
+			  		 ESPERA_SH_SB/*29*/, SH/*30*/, SB/*31*/, JAL/*32*/,
+					 JR/*33*/, SHIFT_1/*34*/, SHIFT_2/*35*/, ARIT_IMM_1/*36*/, ARIT_IMM_2/*37*/, 
+			  		 ARIT_IMM_3/*38*/, EXCES_1/*39*/, EXCES_2/*40*/, EXCES_3/*41*/,
+					 RTE/*42*/, SLT_1/*43*/, SLT_2/*44*/, MUL_1/*45*/, MUL_2/*46*/, DIV_1/*47*/,
+			  		DIV_2/*48*/, MFHI/*49*/, MFLO/*50*/, RESET/*51*/, INC_1, INC_2, DEC_1, DEC_2}estado, prox_estado;
 	
 	assign Estado = estado;
 	
@@ -163,11 +168,9 @@ case(estado)
 						6'h7: prox_estado <= SHIFT_1; //SRAV
 						6'h2: prox_estado <= SHIFT_1; //SRL
 						6'h18: prox_estado <= MUL_1; //MULT
-						6'h10: prox_estado <= MFHI;	//MFHI
+						6'h10: prox_estado <= MFHI; //MFHI
 						6'h12: prox_estado <= MFLO; //MFLO
 						6'h13: prox_estado <= RTE; //RTE
-						//6'h5: prox_estado <= PUSH_1; //PUSH
-						//6'h6: prox_estado <= POP_1; //POP
 						6'h1a: prox_estado <= DIV_1; //DIV
 						default: prox_estado <= ARIT_1; // AND, SUB, ADD
 					endcase
@@ -187,7 +190,7 @@ case(estado)
 				6'h7: prox_estado <= BGT_1; //BGT
 				6'h8: prox_estado <= ARIT_IMM_1; //ADDI
 				6'h9: prox_estado <= ARIT_IMM_1; //ADDIU
-				6'ha: prox_estado <= SLT_1;//SLTI
+				6'ha: prox_estado <= INC_1; //INC
 				default: prox_estado <= EXCES_1;
 			endcase
 	end
